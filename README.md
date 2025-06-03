@@ -1,12 +1,47 @@
-# Core contracts
+# NEAR Core Contracts
 
-- [Lockup / Vesting contract](./lockup/)
-- [Lockup Factory](./lockup-factory/)
-- [Multisig contract](./multisig/)
-- [Staking Pool / Delegation contract](./staking-pool/)
-- [Staking Pool Factory](./staking-pool-factory/)
-- [Voting Contract](./voting/)
-- [Whitelist Contract](./whitelist/)
+This repository contains the core smart contracts that power essential functionality in the NEAR ecosystem. These contracts handle token lockups, multi-signature wallets, staking delegation, governance voting, and other critical infrastructure components.
+
+## Smart Contracts Overview
+
+### Core Functionality Contracts
+
+#### [Lockup / Vesting Contract](./lockup/)
+A comprehensive escrow contract that locks and holds tokens for specified lockup periods with linear unlocking schedules. Supports both lockup mechanisms (time-based token release) and vesting schedules (employment-based with cliff periods and termination capabilities). Essential for token distribution, employee compensation, and investor agreements.
+
+#### [Multisig Contract](./multisig/)
+A basic K-of-N multi-signature wallet implementation using NEAR access keys. Allows multiple parties to collectively control an account by requiring a specified number of confirmations before executing transactions, transfers, or contract calls.
+
+#### [Multisig2 Contract](./multisig2/)
+An enhanced multi-signature contract that supports both access keys and account IDs as signers. Provides more flexible member management compared to the basic multisig contract.
+
+#### [Staking Pool Contract](./staking-pool/)
+Enables token holders to delegate their NEAR tokens to validators through a pooled staking mechanism. Delegators earn staking rewards (minus fees) while helping secure the network. Implements the NEAR staking pool standard for secure delegation.
+
+#### [Voting Contract](./voting/)
+A governance contract specifically designed for validators to vote on network-wide decisions, such as enabling token transfers. Requires a 2/3 majority of staked tokens to pass proposals.
+
+#### [Whitelist Contract](./whitelist/)
+Maintains an approved list of staking pool contracts that are authorized to receive delegated tokens from lockup contracts. Ensures that lockup contracts can only delegate to verified, secure staking pools that implement proper recovery mechanisms.
+
+### Factory Contracts
+
+#### [Lockup Factory](./lockup-factory/)
+Enables permissionless creation of lockup contracts. Any user can deploy and fund new lockup contracts without requiring foundation keys, making the lockup system more decentralized and accessible.
+
+#### [Staking Pool Factory](./staking-pool-factory/)
+Allows users to create new staking pool contracts that are automatically whitelisted. Streamlines the process of setting up validator staking pools while maintaining security through automatic whitelist integration.
+
+#### [Multisig Factory](./multisig-factory/)
+Simplifies the deployment of multisig contracts by providing a factory interface. Users can create new multisig wallets with specified configurations without manually deploying contract code.
+
+### Utility Contracts
+
+#### [W-NEAR Contract](./w-near/)
+A wrapped NEAR token contract that provides ERC-20-like functionality for NEAR tokens, enabling integration with DeFi protocols and cross-chain applications.
+
+#### [State Manipulation Contract](./state-manipulation/)
+A utility contract for advanced state management operations. Allows authorized modification of contract storage, including adding and removing key-value pairs. Primarily used for contract migrations and state corrections.
 
 ## Building and deploying
 
